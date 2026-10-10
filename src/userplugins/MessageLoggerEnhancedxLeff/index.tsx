@@ -34,7 +34,7 @@ import * as ImageManager from "./utils/saveImage/ImageManager";
 import { checkForUpdatesAndNotify } from "./utils/updater";
 export { settings };
 
-export const Flogger = new Logger("MessageLoggerEnhanced", "#f26c6c");
+export const Flogger = new Logger("MessageLoggerEnhancedxLeff", "#f26c6c");
 
 export const cacheSentMessages = new LimitedMap<string, LoggedMessageJSON>();
 
@@ -237,7 +237,7 @@ async function processMessageFetch(response: FetchMessagesResponse) {
 }
 
 export default definePlugin({
-    name: "MessageLoggerEnhanced",
+    name: "MessageLoggerEnhancedxLeff",
     authors: [Devs.Him],
     description: "death is here",
     dependencies: ["MessageLogger"],
