@@ -21,19 +21,29 @@ export default function CharSelectModal({ modalProps, setCharacter }: { modalPro
                 c.character.toLowerCase().includes(s)
             ) {
                 return (
-                    <img key={index} onClick={() => { modalProps.onClose(); setCharacter(index); }} src={`https://st.ayaka.one/img/${c.img}`} srcSet={`https://st.ayaka.one/img/${c.img}`} loading="lazy" />
+                    <img
+                        key={c.id + "-" + index}
+                        alt={c.name}
+                        title={c.name}
+                        width={160}
+                        height={140}
+                        style={{ objectFit: "contain", cursor: "pointer" }}
+                        onClick={() => { modalProps.onClose(); setCharacter(index); }}
+                        onError={e => console.error("[SekaiStickers] image failed:", (e.target as HTMLImageElement).src)}
+                        src={`https://st.ayaka.one/img/${c.img}`}
+                    />
                 );
             }
 
             return null;
         });
-    }, [search, characters]);
+    }, [search]);
     return (
         <Modal {...modalProps} size="lg" title="Select character menu">
             <Flex flexDirection="column" style={{ paddingTop: 12 }}>
                 <TextInput content="mafuyu" placeholder="Mafuyu" onChange={(e: string) => setSearch(e)} />
                 <ScrollerThin style={{ height: 520 }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 330px)", rowGap: 6, columnGap: 5, gridTemplateRows: "repeat(3, 256px)" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", gap: 8 }}>
                         {memoedSearchChar}
                     </div>
                 </ScrollerThin>
